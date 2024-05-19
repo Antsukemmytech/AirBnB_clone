@@ -25,23 +25,22 @@ class BaseModel:
                     value = datetime.strptime(value, format)
                 if key != '__class__':
                     setattr(self, key, value)
+	def __str__(self)
+		"""print class name id and attributes of the dictionary"""
+		class_name = self.__class__.__name__
+		return "[{}] [{}] [{}]" .format(class_name, self.id, sel.__dict__)
 
-    def __str__(self)
-        """print class name id and attribute dictionary"""
-        class_name = self.__class__.__name__
-        return "[{}] [{}] [{}]" .format(class_name, self.id, self.__dict__)
+	def save(self)
+		"""updates the attribute updated_at to the current time"""
+		self.updated_at = datetime.now()
+		storage.save()
 
-    def save(self):
-        """updates the attribute updated_at to the current time"""
-        self.updated_at = datetime.now()
-        storage.save()
-
-    def to_dict(self):
-        """create a dictionary represention of the base model instances
-        convert datetime attributes to ISO format
-        """
-        result =self.__dict__.copy()
-        result['created_at'] = self.created_at.isoformat()
-        result['updated_at'] = self.updated_at.isoformat()
-        result['__class__'] = self.__class__.__name__
-        resturn result
+	def to_dict(self)
+		"""create a dictionary representaion of the base model instances
+		convert datetime attributes to ISO format
+		"""
+		result = self.__dict__.copy()
+		result['crated_at'] = self.created_at.isoformat()
+		result['updated_at'] = self.updated_at.isoformat()
+		result['__class__'] = self.__class__.__name__
+		return result
