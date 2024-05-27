@@ -1,10 +1,9 @@
-#!/usr/bin/python3
-
 """The super class that others will inhirit from"""
 
 import uuid
 from datetime import datetime
 from models import storage
+
 
 class BaseModel:
     """Defines all attributes for the classes"""
@@ -25,9 +24,9 @@ class BaseModel:
                     setattr(self, key, value)
 
     def __str__(self):
-       """Print class name id and attribute dictionary"""
-       class_name = self.__class__.__name__
-       return "[{}] [{}] [{}]"  .format(class_name, self.id, self.__dict__)  
+        """Print class name id and attribute dictionary"""
+        class_name = self.__class__.__name__
+        return "[{}] [{}] [{}]"  .format(class_name, self.id, self.__dict__)
 
     def save(self):
         """updates the attribute updated_at to the current time"""
@@ -37,7 +36,7 @@ class BaseModel:
     def to_dict(self):
         """Create a dictionary representation of th base model instances
         Convert datetime attributes to ISO format
-        """   
+        """
         result = self.__dict__.copy()
         result['created_at'] = self.created_at.isoformat()
         result['updated_at'] = self.updated_at.isoformat()
